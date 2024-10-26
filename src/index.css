@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply scroll-smooth antialiased;
+  }
+  
+  body {
+    @apply font-sans text-dark-100 bg-dark-900 selection:bg-primary-500/30 selection:text-primary-100;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading text-dark-50;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    @apply w-2;
+  }
+  
+  ::-webkit-scrollbar-track {
+    @apply bg-dark-800;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    @apply bg-dark-600 rounded-full hover:bg-dark-500 transition-colors;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center px-6 py-3 rounded-lg font-semibold transition-all duration-300;
+  }
+  
+  .btn-primary {
+    @apply btn bg-gradient-to-r from-primary-600 to-primary-700
+           text-white shadow-lg shadow-primary-600/20
+           hover:from-primary-700 hover:to-primary-800
+           hover:shadow-primary-700/30
+           active:from-primary-800 active:to-primary-900
+           disabled:from-primary-400 disabled:to-primary-500 disabled:cursor-not-allowed;
+  }
+  
+  .btn-outline {
+    @apply btn border border-dark-700 text-dark-200
+           hover:bg-dark-800 hover:border-dark-600 hover:text-dark-100
+           active:bg-dark-700
+           disabled:border-dark-800 disabled:text-dark-400 disabled:cursor-not-allowed;
+  }
+  
+  .section-padding {
+    @apply py-20 md:py-28;
+  }
+
+  /* Common gradient text style */
+  .gradient-text {
+    @apply bg-gradient-to-r from-primary-400 to-primary-600 bg-clip-text text-transparent;
+  }
+
+  /* Glass effect for cards/containers */
+  .glass-dark {
+    @apply bg-dark-900/80 backdrop-blur-lg border border-dark-800/50;
+  }
+  
+  /* Input styles */
+  .input {
+    @apply w-full px-4 py-3 bg-dark-800 border border-dark-700 rounded-lg
+           text-dark-100 placeholder-dark-400
+           focus:outline-none focus:ring-2 focus:ring-primary-600/50 focus:border-primary-600/50
+           transition-all duration-300;
+  }
+  
+  /* Link hover effect */
+  .link-hover {
+    @apply relative after:absolute after:bottom-0 after:left-0 after:h-[2px]
+           after:w-0 after:bg-primary-500 after:transition-all after:duration-300
+           hover:after:w-full;
+  }
+}
+
+/* Optional: Add some cool animations */
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Add this to your index.css */
+@keyframes float-delayed {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+.animate-float-delayed {
+  animation: float-delayed 3s ease-in-out infinite;
+  animation-delay: 1.5s;
+}
