@@ -84,7 +84,7 @@ const Hero = () => {
             className="mt-16 grid grid-cols-2 md:grid-cols-3 gap-8 md:gap-12"
           >
             {[
-              { number: '5+', label: 'Years Experience' },
+              { number: '3+', label: 'Years Experience' },
               { number: '50+', label: 'Projects Completed' },
               { number: '100%', label: 'Client Satisfaction' },
             ].map((stat) => (
