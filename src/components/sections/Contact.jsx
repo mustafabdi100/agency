@@ -1,24 +1,17 @@
 import { motion } from 'framer-motion';
 import Container from '../ui/Container';
-import { 
-  EnvelopeIcon, 
-  PhoneIcon, 
-  MapPinIcon,
-  GlobeAltIcon
-} from '@heroicons/react/24/outline';
+import { EnvelopeIcon, MapPinIcon, GlobeAltIcon } from '@heroicons/react/24/outline';
+import { useForm, ValidationError } from '@formspree/react';
 
 const Contact = () => {
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Handle form submission
-  };
+  const [state, handleSubmit] = useForm("mvgozary"); // Replace "mvgozary" with your actual Formspree ID
 
   const contactMethods = [
     {
       icon: EnvelopeIcon,
       title: 'Email',
       value: 'info@mustafa.co.ke',
-      link: 'mailto:mail@mustafa.co.ke',
+      link: 'mailto:info@mustafa.co.ke',
       description: 'Drop me an email anytime',
     },
     {
@@ -26,7 +19,7 @@ const Contact = () => {
       title: 'Social',
       value: '@mustafa',
       link: '#',
-      description: 'Lets connect on social media',
+      description: 'Let’s connect on social media',
     },
     {
       icon: MapPinIcon,
@@ -148,9 +141,11 @@ const Contact = () => {
               <div className="space-y-6">
                 {/* Name Input */}
                 <div>
-                  <label className="block text-sm font-medium text-dark-200 mb-2">Name</label>
+                  <label className="block text-sm font-medium text-dark-200 mb-2" htmlFor="name">Name</label>
                   <input
+                    id="name"
                     type="text"
+                    name="name"
                     required
                     className="w-full px-4 py-3 bg-dark-700 border border-dark-600 rounded-xl 
                              text-dark-100 placeholder-dark-400
@@ -162,9 +157,11 @@ const Contact = () => {
 
                 {/* Email Input */}
                 <div>
-                  <label className="block text-sm font-medium text-dark-200 mb-2">Email</label>
+                  <label className="block text-sm font-medium text-dark-200 mb-2" htmlFor="email">Email</label>
                   <input
+                    id="email"
                     type="email"
+                    name="email"
                     required
                     className="w-full px-4 py-3 bg-dark-700 border border-dark-600 rounded-xl 
                              text-dark-100 placeholder-dark-400
@@ -172,12 +169,15 @@ const Contact = () => {
                              focus:border-primary-500/30 transition-all duration-300"
                     placeholder="your@email.com"
                   />
+                  <ValidationError prefix="Email" field="email" errors={state.errors} />
                 </div>
 
                 {/* Message Input */}
                 <div>
-                  <label className="block text-sm font-medium text-dark-200 mb-2">Message</label>
+                  <label className="block text-sm font-medium text-dark-200 mb-2" htmlFor="message">Message</label>
                   <textarea
+                    id="message"
+                    name="message"
                     required
                     rows={6}
                     className="w-full px-4 py-3 bg-dark-700 border border-dark-600 rounded-xl 
@@ -186,6 +186,7 @@ const Contact = () => {
                              focus:border-primary-500/30 transition-all duration-300"
                     placeholder="Tell me about your project..."
                   />
+                  <ValidationError prefix="Message" field="message" errors={state.errors} />
                 </div>
 
                 {/* Submit Button */}
@@ -193,14 +194,17 @@ const Contact = () => {
                   type="submit"
                   whileHover={{ scale: 1.01 }}
                   whileTap={{ scale: 0.99 }}
+                  disabled={state.submitting}
                   className="w-full btn-primary group"
                 >
                   <span className="flex items-center justify-center gap-2">
-                    Send Message
+                    {state.submitting ? "Sending..." : "Send Message"}
                     <EnvelopeIcon className="w-5 h-5 transform transition-transform duration-300 
                                           group-hover:translate-x-1" />
                   </span>
                 </motion.button>
+
+                {state.succeeded && <p className="text-green-500 mt-4">Thanks for reaching out! I'll get back to you soon.</p>}
               </div>
             </form>
           </motion.div>
