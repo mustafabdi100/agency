@@ -41,7 +41,7 @@ const Footer = () => {
           >
             <h3 className="text-2xl font-bold bg-gradient-to-r from-primary-400 to-primary-600 
                          bg-clip-text text-transparent mb-4">
-              YourName
+              Mustafa
             </h3>
             <p className="text-dark-300 mb-6 max-w-md">
               Transforming ideas into exceptional digital experiences. 
@@ -127,7 +127,7 @@ const Footer = () => {
                   <ChatBubbleBottomCenterTextIcon className="w-5 h-5 text-dark-400 
                                                            group-hover:text-primary-400 
                                                            transition-colors duration-300" />
-                  Let's Talk
+                  Lets Talk
                 </a>
               </li>
             </ul>
